@@ -189,7 +189,10 @@
 						"typeProperties": {
 							"source": {
 								"type": "SqlServerSource",
-								"sqlReaderQuery": "select * from HumanResources.EmployeePayHistory",
+								"sqlReaderQuery": {
+									"value": "select * from production.product where color='@{pipeline().parameters.PL_PARAM_COLOR}'",
+									"type": "Expression"
+								},
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
@@ -229,8 +232,8 @@
 								"referenceName": "DS_SINK_ADLS",
 								"type": "DatasetReference",
 								"parameters": {
-									"DS_PARAMS_PATH": "/global/india/landing/scenario1",
-									"DS_PARAMS_FILE": "emp_dept_history1.csv"
+									"DS_PARAMS_PATH": "/global/india/landing/scenario4",
+									"DS_PARAMS_FILE": "scenario4.csv"
 								}
 							}
 						]
@@ -238,6 +241,97 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"PL_PARAM_COLOR": {
+						"type": "string"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DS_SQL_SERVER')]",
+				"[concat(variables('factoryId'), '/datasets/DS_SINK_ADLS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Scnenario4_subset_records_on-prem_sql_adls_copy_using_pipeline_parameters')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "scenario_1_copy_full_load_table_data",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"sqlReaderQuery": {
+									"value": "select * from production.product where color='@{pipeline().parameters.PL_PARAM_COLOR}'",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DS_SQL_SERVER",
+								"type": "DatasetReference",
+								"parameters": {
+									"ds_params_schema": "HumanResources",
+									"ds_params_tablename": "EmployeeDepartmentHistory"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DS_SINK_ADLS",
+								"type": "DatasetReference",
+								"parameters": {
+									"DS_PARAMS_PATH": "/global/india/landing/scenario4",
+									"DS_PARAMS_FILE": "scenario4.csv"
+								}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"PL_PARAM_COLOR": {
+						"type": "string"
+					}
 				},
 				"annotations": []
 			},
