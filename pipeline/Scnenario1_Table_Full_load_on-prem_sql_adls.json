@@ -17,7 +17,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "select * from HumanResources.EmployeePayHistory",
+						"sqlReaderQuery": {
+							"value": "select * from production.product where color='@{pipeline().parameters.PL_PARAM_COLOR}'",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -57,13 +60,18 @@
 						"referenceName": "DS_SINK_ADLS",
 						"type": "DatasetReference",
 						"parameters": {
-							"DS_PARAMS_PATH": "/global/india/landing/scenario1",
-							"DS_PARAMS_FILE": "emp_dept_history1.csv"
+							"DS_PARAMS_PATH": "/global/india/landing/scenario4",
+							"DS_PARAMS_FILE": "scenario4.csv"
 						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"PL_PARAM_COLOR": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
