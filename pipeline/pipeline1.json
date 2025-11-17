@@ -45,6 +45,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('LOOKUP_SQL_SERVER_TABLE_CONFIG').output.value",
+						"type": "Expression"
+					},
 					"isSequential": true,
 					"activities": [
 						{
