@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adbadf11"
+		},
+		"LS_SINK_ADLS2_accountKey": {
+			"value": ""
+		},
+		"LS_SQL_SOURCE_password": {
+			"value": ""
+		},
+		"LS_SINK_ADLS2_properties_typeProperties_url": {
+			"value": "https://adbadf11.dfs.core.windows.net/"
+		},
+		"LS_SQL_SOURCE_properties_typeProperties_server": {
+			"value": "LAPTOP-9MO2EC5R"
+		},
+		"LS_SQL_SOURCE_properties_typeProperties_database": {
+			"value": "AdventureWorks2022"
+		},
+		"LS_SQL_SOURCE_properties_typeProperties_userName": {
+			"value": "admin"
+		}
+	}
+}

@@ -1,0 +1,37 @@
+{
+	"name": "DS_SINK_ADLS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SINK_ADLS2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"DS_PARAMS_PATH": {
+				"type": "string"
+			},
+			"DS_PARAMS_FILE": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().DS_PARAMS_FILE",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().DS_PARAMS_PATH",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
