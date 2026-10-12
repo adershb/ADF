@@ -43,7 +43,7 @@
 			},
 			{
 				"name": "check_Incremental_data_count_in_source",
-				"description": "to check whether any incremental data in source which id greater than the watermark value",
+				"description": "To check whether any incremental data in source which id greater than the watermark value",
 				"type": "Lookup",
 				"dependsOn": [
 					{
