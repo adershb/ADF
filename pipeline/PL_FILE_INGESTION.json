@@ -92,6 +92,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "ADF_DEMO"
+		},
 		"annotations": [],
 		"lastPublishTime": "2026-10-11T09:50:17Z"
 	},

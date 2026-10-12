@@ -10,6 +10,9 @@
 				"type": "string"
 			}
 		},
+		"folder": {
+			"name": "ADF_DEMO"
+		},
 		"annotations": [],
 		"type": "Binary",
 		"typeProperties": {

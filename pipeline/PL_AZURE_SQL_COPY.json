@@ -317,6 +317,9 @@
 				"defaultValue": "customers"
 			}
 		},
+		"folder": {
+			"name": "ADF_DEMO"
+		},
 		"annotations": [],
 		"lastPublishTime": "2026-10-12T08:17:44Z"
 	},
