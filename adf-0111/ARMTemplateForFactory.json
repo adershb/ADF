@@ -7,13 +7,13 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-0111"
 		},
-		"LS_AZURE_SQL_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'LS_AZURE_SQL'"
-		},
 		"LS_ADLS_SINK_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adls0111.dfs.core.windows.net/"
+		},
+		"LS_AKV_SQLDB_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://realmofisha-keyvault.vault.azure.net/"
 		},
 		"LS_AZURE_SQL_properties_typeProperties_server": {
 			"type": "string",
@@ -1171,6 +1171,19 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_AKV_SQLDB')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('LS_AKV_SQLDB_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LS_AZURE_SQL')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1182,16 +1195,22 @@
 					"server": "[parameters('LS_AZURE_SQL_properties_typeProperties_server')]",
 					"database": "[parameters('LS_AZURE_SQL_properties_typeProperties_database')]",
 					"encrypt": "mandatory",
-					"trustServerCertificate": false,
+					"trustServerCertificate": true,
 					"authenticationType": "SQL",
 					"userName": "[parameters('LS_AZURE_SQL_properties_typeProperties_userName')]",
 					"password": {
-						"type": "SecureString",
-						"value": "[parameters('LS_AZURE_SQL_password')]"
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "LS_AKV_SQLDB",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "SQLDB-secret"
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AKV_SQLDB')]"
+			]
 		}
 	]
 }
