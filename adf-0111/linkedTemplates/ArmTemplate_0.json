@@ -159,6 +159,9 @@
 						"type": "String"
 					}
 				},
+				"folder": {
+					"name": "ADF_DEMO"
+				},
 				"annotations": [],
 				"lastPublishTime": "2026-10-08T17:42:03Z"
 			},
@@ -288,6 +291,9 @@
 						"type": "String"
 					}
 				},
+				"folder": {
+					"name": "ADF_DEMO"
+				},
 				"annotations": [],
 				"lastPublishTime": "2026-10-11T09:04:32Z"
 			},
@@ -337,6 +343,9 @@
 						"type": "string"
 					}
 				},
+				"folder": {
+					"name": "ADF_DEMO"
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
@@ -377,6 +386,9 @@
 						"type": "string"
 					}
 				},
+				"folder": {
+					"name": "ADF_DEMO"
+				},
 				"annotations": [],
 				"type": "Binary",
 				"typeProperties": {
@@ -409,6 +421,9 @@
 					"sink_folder": {
 						"type": "string"
 					}
+				},
+				"folder": {
+					"name": "ADF_DEMO"
 				},
 				"annotations": [],
 				"type": "Binary",
@@ -443,6 +458,9 @@
 					"source_folder": {
 						"type": "string"
 					}
+				},
+				"folder": {
+					"name": "ADF_DEMO"
 				},
 				"annotations": [],
 				"type": "Binary",
@@ -589,6 +607,9 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"folder": {
+					"name": "ADF_DEMO"
+				},
 				"annotations": [],
 				"lastPublishTime": "2026-10-11T09:50:17Z"
 			},
@@ -614,6 +635,9 @@
 					"table_name": {
 						"type": "string"
 					}
+				},
+				"folder": {
+					"name": "ADF_DEMO"
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
@@ -980,6 +1004,9 @@
 						"defaultValue": "customers"
 					}
 				},
+				"folder": {
+					"name": "ADF_DEMO"
+				},
 				"annotations": [],
 				"lastPublishTime": "2026-10-12T08:17:44Z"
 			},
@@ -1030,6 +1057,9 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "ADF_DEMO"
 				},
 				"annotations": [],
 				"lastPublishTime": "2026-10-06T18:34:14Z"
@@ -1202,6 +1232,9 @@
 					"Table_Status": {
 						"type": "Array"
 					}
+				},
+				"folder": {
+					"name": "ADF_DEMO"
 				},
 				"annotations": [],
 				"lastPublishTime": "2026-10-11T08:50:24Z"
